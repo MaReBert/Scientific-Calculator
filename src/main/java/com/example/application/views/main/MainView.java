@@ -1,5 +1,6 @@
 package com.example.application.views.main;
 
+import com.example.application.calculator.Calculator;
 import com.example.application.processor.StringProcessor;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -37,6 +38,8 @@ public class MainView extends VerticalLayout {
     private Button buttonParenthesisClose;
     @Autowired
     private StringProcessor stringProcessor;
+    @Autowired
+    private Calculator calculator;
     private String result;
     private boolean resultIsActive;
 
@@ -114,7 +117,7 @@ public class MainView extends VerticalLayout {
         textArea.setValue(totalInputString);
     }
     private void getResult(){
-        result = stringProcessor.processInputString(totalInputString);
+        result = calculator.getResult(stringProcessor.processInputString(totalInputString));
         resultIsActive = true;
         totalInputString = null;
         textArea.setValue(result);
